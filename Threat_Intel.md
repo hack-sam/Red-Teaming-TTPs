@@ -42,7 +42,7 @@ curl -s "https://api.ip2location.io/?ip=8.8.8.8&format=json" | jq
 }
 ```
 
-You can also utilize https://cybergordon.com/ to check for IP reputation!
+You can also utilize <https://cybergordon.com/> to check for IP reputation!
 
 ## Enumerating Domains with RDAP
 
@@ -132,8 +132,8 @@ A command-line tool to quickly analyze all IPs in a file and see which ones have
 ### Install
 
 ```bash
-$ wget https://gitlab.com/api/v4/projects/33695681/packages/generic/nrich/latest/nrich_latest_amd64.deb
-$ sudo dpkg -i nrich_latest_amd64.deb
+wget https://gitlab.com/api/v4/projects/33695681/packages/generic/nrich/latest/nrich_latest_amd64.deb
+sudo dpkg -i nrich_latest_amd64.deb
 ```
 
 ### Confirmation
@@ -185,7 +185,7 @@ text = pyTesseract.image_to_string(pdf_img)
 
 ## Threat Intelligence Streams with Python and Reddit
 
-Enumerate new Reddit comments for threat intelligence. This script can be modified with regular expressions to hone in on exploit development, modern threats, and any newsworthy cyber events. 
+Enumerate new Reddit comments for threat intelligence. This script can be modified with regular expressions to hone in on exploit development, modern threats, and any newsworthy cyber events.
 
 ```python
 #!/usr/bin/env python3
@@ -379,146 +379,146 @@ A simple Go program for enumerating Azure targets:
 package main
 
 import (
-	"flag"
-	"fmt"
-	"net"
-	"os"
+ "flag"
+ "fmt"
+ "net"
+ "os"
 
-	"github.com/miekg/dns"
+ "github.com/miekg/dns"
 )
 
 type Config struct {
-	Domain       string
-	Permutations bool
-	EnumA        bool
-	EnumCNAME    bool
-	EnumMX       bool
-	EnumNS       bool
-	EnumSOA      bool
-	EnumTXT      bool
+ Domain       string
+ Permutations bool
+ EnumA        bool
+ EnumCNAME    bool
+ EnumMX       bool
+ EnumNS       bool
+ EnumSOA      bool
+ EnumTXT      bool
 }
 
 func main() {
-	cfg := parseFlags()
-	if cfg.Domain == "" {
-		flag.Usage()
-		os.Exit(1)
-	}
+ cfg := parseFlags()
+ if cfg.Domain == "" {
+  flag.Usage()
+  os.Exit(1)
+ }
 
-	subdomains := []string{
-		".onmicrosoft.com", ".scm.azurewebsites.net", ".azurewebsites.net", ".p.azurewebsites.net", ".cloudapp.net",
-		".file.core.windows.net", ".blob.core.windows.net", ".queue.core.windows.net", ".table.core.windows.net",
-		".mail.protection.outlook.com", ".sharepoint.com", ".redis.cache.windows.net", ".documents.azure.com",
-		".database.windows.net", ".vault.azure.net", ".azureedge.net", ".search.windows.net", ".azure-api.net", ".azurecr.io",
-	}
+ subdomains := []string{
+  ".onmicrosoft.com", ".scm.azurewebsites.net", ".azurewebsites.net", ".p.azurewebsites.net", ".cloudapp.net",
+  ".file.core.windows.net", ".blob.core.windows.net", ".queue.core.windows.net", ".table.core.windows.net",
+  ".mail.protection.outlook.com", ".sharepoint.com", ".redis.cache.windows.net", ".documents.azure.com",
+  ".database.windows.net", ".vault.azure.net", ".azureedge.net", ".search.windows.net", ".azure-api.net", ".azurecr.io",
+ }
 
-	targets := generateTargetDomains(cfg, subdomains)
-	for _, t := range targets {
-		if cfg.EnumA && hasARecord(t) {
-			fmt.Printf("[+] Discovered: %s\n", t)
-			performLookups(cfg, t)
-		}
-	}
+ targets := generateTargetDomains(cfg, subdomains)
+ for _, t := range targets {
+  if cfg.EnumA && hasARecord(t) {
+   fmt.Printf("[+] Discovered: %s\n", t)
+   performLookups(cfg, t)
+  }
+ }
 }
 
 func parseFlags() Config {
-	var c Config
-	flag.StringVar(&c.Domain, "domain", "", "Target domain without TLD (e.g., victim)")
-	flag.BoolVar(&c.Permutations, "perm", false, "Generate keyword permutations around the domain")
-	flag.BoolVar(&c.EnumA, "a", true, "Enumerate A records")
-	flag.BoolVar(&c.EnumCNAME, "cname", true, "Enumerate CNAME records")
-	flag.BoolVar(&c.EnumMX, "mx", true, "Enumerate MX records")
-	flag.BoolVar(&c.EnumNS, "ns", true, "Enumerate NS records")
-	flag.BoolVar(&c.EnumSOA, "soa", true, "Enumerate SOA records")
-	flag.BoolVar(&c.EnumTXT, "txt", true, "Enumerate TXT records")
-	flag.Parse()
-	return c
+ var c Config
+ flag.StringVar(&c.Domain, "domain", "", "Target domain without TLD (e.g., victim)")
+ flag.BoolVar(&c.Permutations, "perm", false, "Generate keyword permutations around the domain")
+ flag.BoolVar(&c.EnumA, "a", true, "Enumerate A records")
+ flag.BoolVar(&c.EnumCNAME, "cname", true, "Enumerate CNAME records")
+ flag.BoolVar(&c.EnumMX, "mx", true, "Enumerate MX records")
+ flag.BoolVar(&c.EnumNS, "ns", true, "Enumerate NS records")
+ flag.BoolVar(&c.EnumSOA, "soa", true, "Enumerate SOA records")
+ flag.BoolVar(&c.EnumTXT, "txt", true, "Enumerate TXT records")
+ flag.Parse()
+ return c
 }
 
 func generateTargetDomains(cfg Config, subs []string) []string {
-	bases := []string{cfg.Domain}
-	if cfg.Permutations {
-		keywords := []string{
-			"root", "web", "api", "azure", "azure-logs", "data", "database", "data-private", "data-public", "dev",
-			"development", "demo", "files", "filestorage", "internal", "keys", "logs", "private", "prod", "production",
-			"public", "service", "services", "splunk", "sql", "staging", "storage", "storageaccount", "test", "useast",
-			"useast2", "centralus", "northcentralus", "westcentralus", "westus", "westus2",
-		}
-		for _, k := range keywords {
-			bases = append(bases, fmt.Sprintf("%s-%s", cfg.Domain, k))
-			bases = append(bases, fmt.Sprintf("%s-%s", k, cfg.Domain))
-		}
-	}
+ bases := []string{cfg.Domain}
+ if cfg.Permutations {
+  keywords := []string{
+   "root", "web", "api", "azure", "azure-logs", "data", "database", "data-private", "data-public", "dev",
+   "development", "demo", "files", "filestorage", "internal", "keys", "logs", "private", "prod", "production",
+   "public", "service", "services", "splunk", "sql", "staging", "storage", "storageaccount", "test", "useast",
+   "useast2", "centralus", "northcentralus", "westcentralus", "westus", "westus2",
+  }
+  for _, k := range keywords {
+   bases = append(bases, fmt.Sprintf("%s-%s", cfg.Domain, k))
+   bases = append(bases, fmt.Sprintf("%s-%s", k, cfg.Domain))
+  }
+ }
 
-	var targets []string
-	for _, b := range bases {
-		for _, s := range subs {
-			targets = append(targets, b+s)
-		}
-	}
-	return targets
+ var targets []string
+ for _, b := range bases {
+  for _, s := range subs {
+   targets = append(targets, b+s)
+  }
+ }
+ return targets
 }
 
 func hasARecord(d string) bool {
-	_, err := net.LookupIP(d)
-	return err == nil
+ _, err := net.LookupIP(d)
+ return err == nil
 }
 
 func performLookups(cfg Config, d string) {
-	if cfg.EnumA {
-		if ips, _ := net.LookupIP(d); len(ips) > 0 {
-			fmt.Printf("  A     %v\n", ips)
-		}
-	}
-	if cfg.EnumCNAME {
-		if c, err := net.LookupCNAME(d); err == nil {
-			fmt.Printf("  CNAME %s\n", c)
-		}
-	}
-	if cfg.EnumNS {
-		if nss, err := net.LookupNS(d); err == nil {
-			var hosts []string
-			for _, ns := range nss {
-				hosts = append(hosts, ns.Host)
-			}
-			fmt.Printf("  NS    %v\n", hosts)
-		}
-	}
-	if cfg.EnumMX {
-		if mxs, err := net.LookupMX(d); err == nil {
-			var entries []string
-			for _, mx := range mxs {
-				entries = append(entries, fmt.Sprintf("%s (%d)", mx.Host, mx.Pref))
-			}
-			fmt.Printf("  MX    %v\n", entries)
-		}
-	}
-	if cfg.EnumTXT {
-		if txts, err := net.LookupTXT(d); err == nil {
-			fmt.Printf("  TXT   %v\n", txts)
-		}
-	}
-	if cfg.EnumSOA {
-		if soa, err := querySOA(d); err == nil {
-			fmt.Printf("  SOA   %s\n", soa)
-		}
-	}
+ if cfg.EnumA {
+  if ips, _ := net.LookupIP(d); len(ips) > 0 {
+   fmt.Printf("  A     %v\n", ips)
+  }
+ }
+ if cfg.EnumCNAME {
+  if c, err := net.LookupCNAME(d); err == nil {
+   fmt.Printf("  CNAME %s\n", c)
+  }
+ }
+ if cfg.EnumNS {
+  if nss, err := net.LookupNS(d); err == nil {
+   var hosts []string
+   for _, ns := range nss {
+    hosts = append(hosts, ns.Host)
+   }
+   fmt.Printf("  NS    %v\n", hosts)
+  }
+ }
+ if cfg.EnumMX {
+  if mxs, err := net.LookupMX(d); err == nil {
+   var entries []string
+   for _, mx := range mxs {
+    entries = append(entries, fmt.Sprintf("%s (%d)", mx.Host, mx.Pref))
+   }
+   fmt.Printf("  MX    %v\n", entries)
+  }
+ }
+ if cfg.EnumTXT {
+  if txts, err := net.LookupTXT(d); err == nil {
+   fmt.Printf("  TXT   %v\n", txts)
+  }
+ }
+ if cfg.EnumSOA {
+  if soa, err := querySOA(d); err == nil {
+   fmt.Printf("  SOA   %s\n", soa)
+  }
+ }
 }
 
 func querySOA(name string) (string, error) {
-	m := new(dns.Msg)
-	m.SetQuestion(dns.Fqdn(name), dns.TypeSOA)
+ m := new(dns.Msg)
+ m.SetQuestion(dns.Fqdn(name), dns.TypeSOA)
 
-	in, err := dns.Exchange(m, "8.8.8.8:53")
-	if err != nil {
-		return "", err
-	}
-	for _, ans := range in.Answer {
-		if soa, ok := ans.(*dns.SOA); ok {
-			return soa.String(), nil
-		}
-	}
-	return "", fmt.Errorf("SOA record not found")
+ in, err := dns.Exchange(m, "8.8.8.8:53")
+ if err != nil {
+  return "", err
+ }
+ for _, ans := range in.Answer {
+  if soa, ok := ans.(*dns.SOA); ok {
+   return soa.String(), nil
+  }
+ }
+ return "", fmt.Errorf("SOA record not found")
 }
 ```
 

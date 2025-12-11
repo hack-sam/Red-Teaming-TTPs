@@ -1622,19 +1622,19 @@ Timestomping is an anti-forensics technique which is used to modify the timestam
 Set the last access time of file1 to January 02 15:45 of current year. It’s format is MMDDHHMM.
 
 ```sh
-$ touch -c -a 01021545 payload.elf
+touch -c -a 01021545 payload.elf
 ```
 
 Set last modification date of a file with -m option.
 
 ```sh
-$ touch -c -m 01021545 payload.elf
+touch -c -m 01021545 payload.elf
 ```
 
 Use the -r option and the file we want to inherit its access and modification timestamp. In this example we will use normal.elf last access and modification timestamp for newly created payload.elf.
 
 ```sh
-$ touch -r normal.elf payload.elf
+touch -r normal.elf payload.elf
 ```
 
 ## Linux Bash History Stomping
@@ -1642,7 +1642,7 @@ $ touch -r normal.elf payload.elf
 One-liner:
 
 ```sh
-$ export HISTFILE=/dev/null; unset HISTFILESIZE; unset HISTSIZE
+export HISTFILE=/dev/null; unset HISTFILESIZE; unset HISTSIZE
 ```
 
 Defenders can also enable timestamps in ```.bash_history``` using the command: ```export HISTTIMEFORMAT='%F %T '```
@@ -1652,7 +1652,7 @@ Defenders can also enable timestamps in ```.bash_history``` using the command: `
 Ever get a "shortened" url (bit.ly, tinyurl.com or whatever) and stress about "clicking that link"?  Or worse yet, have that "Oh No" moment after you just clicked it? Let's use cURL to avoid this!
 
 ```sh
-$ curl -k -v -I <URL> 2>&1 | grep -i "< location" | cut -d " " -f 3
+curl -k -v -I <URL> 2>&1 | grep -i "< location" | cut -d " " -f 3
 ```
 
 Output:
