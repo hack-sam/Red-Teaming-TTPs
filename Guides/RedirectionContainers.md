@@ -1,17 +1,16 @@
-# Redirection Containers:
+# Redirection Containers
 
 <p align="center">
   <img src="https://github.com/RoseSecurity-Research/Red-Teaming-TTPs/assets/72598486/d302012e-a4f4-4859-b51f-c0a8df7c4203" alt="docker" width="70%"/>
 </p>
 
-## Background:
+## Background
 
 This repository contains a Python script and Docker file designed to serve as a versatile redirection tool for Red Team operations. The tool enables Red Team operators to dynamically control and manipulate network traffic, providing adaptability, scalability, and evasion capabilities.
 
+## Redirector.py
 
-## Redirector.py:
-
-This script creates a basic Flask web application that serves a fake HTML page at the root route `/`. It has additional routes for `/healthz` and `/callback`. The `/healthz` route returns a simple "Healthy" response for healthchecks. The main logic is in the `/callback` route. It checks the request User-Agent header and if it exactly matches a specific Chrome browser string, it redirects the request to http://10.0.0.2. For any other user agents, it just returns the root page. The script is configured to run on port 443 instead of the default Flask port 5000. It also has a Dockerfile to containerize it, exposing port 443 and adding a healthcheck using the `/healthz` endpoint.
+This script creates a basic Flask web application that serves a fake HTML page at the root route `/`. It has additional routes for `/healthz` and `/callback`. The `/healthz` route returns a simple "Healthy" response for healthchecks. The main logic is in the `/callback` route. It checks the request User-Agent header and if it exactly matches a specific Chrome browser string, it redirects the request to <http://10.0.0.2>. For any other user agents, it just returns the root page. The script is configured to run on port 443 instead of the default Flask port 5000. It also has a Dockerfile to containerize it, exposing port 443 and adding a healthcheck using the `/healthz` endpoint.
 
 ```python
 from flask import Flask, request, redirect
@@ -48,7 +47,7 @@ if __name__ == '__main__':
     app.run(port=443)
 ```
 
-## Dockerfile:
+## Dockerfile
 
 ```dockerfile
 FROM python:3.12-slim

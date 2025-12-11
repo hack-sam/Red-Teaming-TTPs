@@ -6,7 +6,7 @@
 
 Microsoft makes use of a number of different domains and subdomains for each of their Azure services. From SQL databases to SharePoint drives, each service maps to its respective domain/subdomain, and with the proper toolset, these can be identified through DNS enumeration to yield information about the target domain's infrastructure. ```enum_azuresubdomains.rb``` is a Metasploit module for enumerating public Azure services by validating legitimate subdomains through various DNS record queries. This cloud reconnaissance module rapidly identifies API services, storage accounts, key vaults, databases, and more! Expedite your cloud reconnaissance phases with ```enum_azuresubdomains.rb```.
 
-## Domains and Associated Services:
+## Domains and Associated Services
 
 | Domain | Associated Service |
 | --- | --- |
@@ -31,18 +31,18 @@ Microsoft makes use of a number of different domains and subdomains for each of 
 
 ***NOTE: Enumerating existing Azure subdomains may be handy for anyone looking to conduct subdomain takeovers. Subdomain takeovers are typically done the other way around (finding a domain that’s no longer registered or in use), but by preemptively discovering the domains, and keeping tabs on them for later, you may be able to monitor for potential subdomain takeovers.***
 
-# Demo:
+# Demo
 
-https://github.com/user-attachments/assets/ffe508b6-a146-454d-b453-96b9d59b7e27
+<https://github.com/user-attachments/assets/ffe508b6-a146-454d-b453-96b9d59b7e27>
 
-# Install:
+# Install
 
 Download repository:
 
 ```
-$ mkdir Enum_AzureSubdomains
-$ cd Enum_AzureSubdomains/
-$ sudo git clone https://github.com/RoseSecurity/Enum_AzureSubdomains.git
+mkdir Enum_AzureSubdomains
+cd Enum_AzureSubdomains/
+sudo git clone https://github.com/RoseSecurity/Enum_AzureSubdomains.git
 ```
 
 Usage:
@@ -68,6 +68,5 @@ msf6> use auxiliary/gather/enum_azuresubdomains
 If you encounter any errors, check the following log:
 
 ```
-$ tail ~/.msf4/logs/framework.log
+tail ~/.msf4/logs/framework.log
 ```
-

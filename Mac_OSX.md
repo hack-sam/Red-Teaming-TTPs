@@ -14,11 +14,11 @@ ioreg -c IOPlatformExpertDevice -d 2
 
 Applications on macOS are stored in the /Applications directory. Each application is bundled as a .app file, which is actually a directory with a specific layout. Key components of an application bundle include:
 
-  1. Info.plist: This file contains application-specific configuration, entitlements, tasks, and metadata.
+1. Info.plist: This file contains application-specific configuration, entitlements, tasks, and metadata.
 
-  2. MacOS: This directory contains the Mach-O executable.
+2. MacOS: This directory contains the Mach-O executable.
 
-  3. Resources: This directory includes icons, fonts, and images used by the application.
+3. Resources: This directory includes icons, fonts, and images used by the application.
 
 ```sh
 # List Applications
@@ -34,9 +34,9 @@ Versions:
 
 ```sh
 ❯ sw_vers
-ProductName:		macOS
-ProductVersion:		14.5
-BuildVersion:		23F79
+ProductName:  macOS
+ProductVersion:  14.5
+BuildVersion:  23F79
 ```
 
 A basic script for gathering system information using `osascript`:
@@ -92,11 +92,11 @@ ipconfig getsummary $(networksetup -listallhardwareports | awk '/Hardware Port: 
 
 The three types of MacOS users are:
 
-  - **Local Users** — Managed by the local OpenDirectory service, they aren’t connected in any way to the Active Directory
+- **Local Users** — Managed by the local OpenDirectory service, they aren’t connected in any way to the Active Directory
 
-  - **Network Users** — Volatile Active Directory users who require a connection to the DC server to authenticate
+- **Network Users** — Volatile Active Directory users who require a connection to the DC server to authenticate
 
-  - **Mobile Users** — Active Directory users with a local backup for their credentials and files
+- **Mobile Users** — Active Directory users with a local backup for their credentials and files
 
 ```sh
 # User and Group Enumeration
@@ -339,34 +339,34 @@ LaunchAgent plists are a common target because they provide persistent access th
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AssociatedBundleIdentifiers</key>
-	<string>com.grammarly.ProjectLlama</string>
-	<key>EnvironmentVariables</key>
-	<dict>
-		<key>GD_AGENT_LABEL</key>
-		<string>com.grammarly.ProjectLlama.Shepherd</string>
-		<key>GD_AGENT_PLIST_PATH</key>
-		<string>/Users/rosesecurity/Library/LaunchAgents/com.grammarly.ProjectLlama.Shepherd.plist</string>
-		<key>GD_BUNDLE_ID</key>
-		<string>com.grammarly.ProjectLlama</string>
-		<key>GD_BUNDLE_NAME</key>
-		<string>Grammarly Desktop</string>
-	</dict>
-	<key>KeepAlive</key>
-	<true/>
-	<key>Label</key>
-	<string>com.grammarly.ProjectLlama.Shepherd</string>
-	<key>MachServices</key>
-	<dict>
-		<key>com.grammarly.nativemessaging.discovery</key>
-		<true/>
-	</dict>
-	<key>ProgramArguments</key>
-	<array>
-		<string>/Applications/Grammarly Desktop.app/Contents/Library/LaunchAgents/Grammarly Desktop Helper.app/Contents/MacOS/Grammarly Desktop Helper</string>
-	</array>
-	<key>RunAtLoad</key>
-	<true/>
+ <key>AssociatedBundleIdentifiers</key>
+ <string>com.grammarly.ProjectLlama</string>
+ <key>EnvironmentVariables</key>
+ <dict>
+  <key>GD_AGENT_LABEL</key>
+  <string>com.grammarly.ProjectLlama.Shepherd</string>
+  <key>GD_AGENT_PLIST_PATH</key>
+  <string>/Users/rosesecurity/Library/LaunchAgents/com.grammarly.ProjectLlama.Shepherd.plist</string>
+  <key>GD_BUNDLE_ID</key>
+  <string>com.grammarly.ProjectLlama</string>
+  <key>GD_BUNDLE_NAME</key>
+  <string>Grammarly Desktop</string>
+ </dict>
+ <key>KeepAlive</key>
+ <true/>
+ <key>Label</key>
+ <string>com.grammarly.ProjectLlama.Shepherd</string>
+ <key>MachServices</key>
+ <dict>
+  <key>com.grammarly.nativemessaging.discovery</key>
+  <true/>
+ </dict>
+ <key>ProgramArguments</key>
+ <array>
+  <string>/Applications/Grammarly Desktop.app/Contents/Library/LaunchAgents/Grammarly Desktop Helper.app/Contents/MacOS/Grammarly Desktop Helper</string>
+ </array>
+ <key>RunAtLoad</key>
+ <true/>
 </dict>
 </plist>
 ```

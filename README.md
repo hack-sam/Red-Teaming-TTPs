@@ -67,6 +67,7 @@ Share with your friends:
 ## Contributing
 
 PRs are welcome! We follow the typical "fork-and-pull" Git workflow.
+
  1. **Fork** the repo on GitHub
  2. **Clone** the project to your own machine
  3. **Commit** changes to your own branch

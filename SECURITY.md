@@ -8,10 +8,10 @@ If you believe you have found a security vulnerability in any repository owned b
 
 To help me better understand the nature and scope of the issue, please include as much of the following information as possible in your report:
 
-  - Description of the vulnerability and its potential impact.
-  - Step-by-step instructions to reproduce the issue.
-  - Affected versions and configurations.
-  - Any possible mitigations or workarounds that you have identified.
+- Description of the vulnerability and its potential impact.
+- Step-by-step instructions to reproduce the issue.
+- Affected versions and configurations.
+- Any possible mitigations or workarounds that you have identified.
 
 ### What to Expect
 
@@ -24,6 +24,7 @@ To help me better understand the nature and scope of the issue, please include a
 >
 
 After you submit a report, I will:
+
 - Respond to your report within 48 hours to acknowledge receipt.
 - Provide an estimated time frame for addressing the vulnerability.
 - Notify you when the issue is resolved.

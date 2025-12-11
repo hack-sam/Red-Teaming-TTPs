@@ -33,7 +33,7 @@ inurl:pastebin "AWS_ACCESS_KEY"
 Recursively searching for AWS Access Keys on *Nix containers
 
 ```bash
-$ grep -ER "AKIA[A-Z0-9]{16}|ASIA[A-Z0-9]{16}" /
+grep -ER "AKIA[A-Z0-9]{16}|ASIA[A-Z0-9]{16}" /
 ```
 
 S3 Log Google Dorking
@@ -311,18 +311,18 @@ main() {
   ip_only_file="ip_addresses.txt"
   : > "$output_file"
   : > "$ip_only_file"
-  
+
   # Get the list of all projects
   projects=$(list_all_projects)
   for project in $projects; do
     echo "Processing Project: $project"
-    
+
     # Check if Resource Manager API is enabled for the project
     if [[ -z "$(is_api_enabled "$project" "cloudresourcemanager.googleapis.com")" ]]; then
       echo "Resource Manager API is not enabled for project $project. Skipping..."
       continue
     fi
-    
+
     # Check if Compute Engine API is enabled for the project
     if [[ -z "$(is_api_enabled "$project" "compute.googleapis.com")" ]]; then
       echo "Compute Engine API is not enabled for project $project. Skipping..."
@@ -342,7 +342,7 @@ main() {
         instance_name=$(_jq '.name')
         zone=$(_jq '.zone' | awk -F/ '{print $NF}')
         public_ips=$(_jq '.networkInterfaces[].accessConfigs[]?.natIP')
-        
+
         # Check if there is a public IP and write to the output files
         if [[ -n "$public_ips" ]]; then
           for ip in $public_ips; do
@@ -402,7 +402,7 @@ curl -s -f -H "Metadata-Flavor: Google" http://metadata/computeMetadata/v1/insta
 # User data
 curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/attributes/startup-script"
 # Network Interfaces
-for iface in $(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/network-interfaces/"); do 
+for iface in $(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/network-interfaces/"); do
     echo "  IP: "$(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/network-interfaces/$iface/ip")
     echo "  Subnetmask: "$(curl -s -f -H "X-Google-Metadata-Request: True" "http://metadata/computeMetadata/v1/instance/network-interfaces/$iface/subnetmask")
     echo "  Gateway: "$(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/network-interfaces/$iface/gateway")
@@ -411,7 +411,7 @@ for iface in $(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeM
     echo "  ==============  "
 done
 # Service Accounts
-for sa in $(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/service-accounts/"); do 
+for sa in $(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/service-accounts/"); do
     echo "  Name: $sa"
     echo "  Email: "$(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/service-accounts/${sa}email")
     echo "  Aliases: "$(curl -s -f -H "Metadata-Flavor: Google" "http://metadata/computeMetadata/v1/instance/service-accounts/${sa}aliases")
@@ -493,7 +493,7 @@ for domain in tqdm(domain_names, desc="Checking for subdomain takeovers"):
 ## Kubernetes Secrets Harvesting
 
 ```bash
-$ curl -k -v -H “Authorization: Bearer <jwt_token>” -H “Content-Type: application/json” https://<master_ip>:6443/api/v1/namespaces/default/secrets | jq -r ‘.items[].data’
+curl -k -v -H “Authorization: Bearer <jwt_token>” -H “Content-Type: application/json” https://<master_ip>:6443/api/v1/namespaces/default/secrets | jq -r ‘.items[].data’
 ```
 
 ## Kubernetes Service Enumeration
@@ -521,34 +521,34 @@ kubectl get pods
 kubectl describe pod <pod-name>
 
 # Create a new pod.
-kubectl create pod <pod-name> 
+kubectl create pod <pod-name>
 
 # List all nodes in the cluster.
-kubectl get nodes 
+kubectl get nodes
 
 # Get detailed information about a node.
-kubectl describe node <node-name> 
+kubectl describe node <node-name>
 
 # Create a new node
-kubectl create node <node-name> 
+kubectl create node <node-name>
 
 # List all services in the cluster.
-kubectl get services 
+kubectl get services
 
 # Get detailed information about a service.
-kubectl describe service <service-name> 
+kubectl describe service <service-name>
 
 # Create a new service.
-kubectl create service <service-name> 
+kubectl create service <service-name>
 
 # List all secrets in the cluster.
-kubectl get secrets 
+kubectl get secrets
 
 # Get detailed information about a secret.
-kubectl describe secret <secret-name> 
+kubectl describe secret <secret-name>
 
 # Create a new secret.
-kubectl create secret <secret-name> 
+kubectl create secret <secret-name>
 ```
 
 ## Password Hunting Regex
@@ -609,24 +609,24 @@ A sample script that enumerates environment variables. This script pairs well wi
 package main
 
 import (
-	"fmt"
-	"os"
-	"strings"
+ "fmt"
+ "os"
+ "strings"
 )
 
 func main() {
-	sensitiveKeywords := []string{"password", "secret", "key", "token", "api", "auth", "credential"}
+ sensitiveKeywords := []string{"password", "secret", "key", "token", "api", "auth", "credential"}
 
-	envVars := os.Environ()
-	for _, e := range envVars {
-		envLower := strings.ToLower(e)
-		for _, keyword := range sensitiveKeywords {
-			if strings.Contains(envLower, keyword) {
-				fmt.Printf("SENSITIVE: %s\n", e)
-				break
-			}
-		}
-	}
+ envVars := os.Environ()
+ for _, e := range envVars {
+  envLower := strings.ToLower(e)
+  for _, keyword := range sensitiveKeywords {
+   if strings.Contains(envLower, keyword) {
+    fmt.Printf("SENSITIVE: %s\n", e)
+    break
+   }
+  }
+ }
 }
 ```
 

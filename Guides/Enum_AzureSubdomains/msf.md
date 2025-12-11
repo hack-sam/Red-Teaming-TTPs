@@ -1,4 +1,5 @@
 ## Introduction
+
 Microsoft makes use of a number of different domains and subdomains for each of their Azure services. From SQL databases to SharePoint drives, each service maps to its respective domain/subdomain, and these can be identified through DNS enumeration to yield information about the target domain's infrastructure. ```enum_azuresubdomains.rb``` is a Metasploit module for enumerating public Azure services by validating legitimate subdomains through various DNS record queries. This cloud reconnaissance module identifies API services, storage accounts, key vaults, and databases.
 
 ## Verification Steps
@@ -6,7 +7,7 @@ Microsoft makes use of a number of different domains and subdomains for each of 
   1. Start `msfconsole`
   2. Do: `use auxiliary/gather/enum_azuresubdomains`
   3. Do: `set DOMAIN <Target Domain>`
-  5. Do: `run`
+  4. Do: `run`
 
 ## Options
 
@@ -17,7 +18,6 @@ Microsoft makes use of a number of different domains and subdomains for each of 
   **PERMUTATIONS**
 
   This appends and prepends permutated keywords to identify common domain name variations.
-
 
 ## Scenarios
 
