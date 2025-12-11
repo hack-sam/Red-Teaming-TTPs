@@ -42,13 +42,13 @@ http-post {
         header "Host" "dgwduytwaq0ei.cloudfront.net";
         header "Referer" "http://code.jquery.com/";
         header "Accept-Encoding" "gzip, deflate";
-       
+
         id {
-            mask;       
+            mask;  
             base64url;
-            parameter "__cfduid";            
+            parameter "__cfduid";  
         }
-              
+
         output {
             mask;
             base64url;

